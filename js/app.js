@@ -12,8 +12,7 @@ var Enemy = function(x,y, speed) {
     // dbr - movement: var loc = loc++?
     // dbr - needs a handleinput method
     // dbr - needs a addEventListener method
-    // dbr - needs a drawImage method
-    // dbr - needs a update method
+
 };
 
 // 2.)    Update the enemy's position, required method for game
@@ -23,6 +22,12 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 //loc = movement that you get from the handler * dt
+
+if(this.x <= 505) {  //canvas.width = 505
+    this.x = this.x + this.speed * dt;
+} else {
+    this.x = -2;
+}
 };
 // 3.)    Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -37,7 +42,7 @@ var player = function(x,y){
       this.x = x;
       this.y = y;
       this.speed = 40;
-      this.sprite = 'images/char-boy.png';
+      this.sprite = 'images/owen.png';
 };
 
 player.prototype.update = function(){
@@ -102,16 +107,8 @@ for (var i=0; i<3; i++){
       var enemySpeed = 50 + Math.floor(Math.random() * 150);
       allEnemies.push(new Enemy(enemyX, enemyY, enemySpeed))
 };
-/*
-var bug1 = new Enemy(60, (Math.random() * 10));
-var bug2 = new Enemy(140, (Math.random() * 10));
-var bug3 = new Enemy(220, (Math.random() * 10));
 
-var allEnemies = [bug1, bug2, bug3];
-*/
 var player = new player(130,50);
-
-
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //  This listens for key presses and sends the keys to your
