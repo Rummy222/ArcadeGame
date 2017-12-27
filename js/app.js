@@ -27,7 +27,7 @@ if(this.x <= 505) {  //canvas.width = 505
 }
 
 // Check for Collisions
- checkCollision(this);
+ //checkCollision(this);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -103,13 +103,13 @@ Player.prototype.handleInput = function(key) {
         player.x = 202.5;
         player.y = 383;
     }
-    /* check for player reaching top of canvas and winning the game
+//   check for player reaching top of canvas and winning the game
     if (player.y + 63 <= 0) {
         player.x = 202.5;
         player.y = 383;
         console.log('you made it!');
     }
-    */
+
   };
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -126,7 +126,7 @@ for (var i=0; i<3; i++){
       allEnemies.push(new Enemy(enemyX, enemyY, enemySpeed))
 };
 
-var player = new Player();
+var Player = new Player();
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //  This listens for key presses and sends the keys to your
