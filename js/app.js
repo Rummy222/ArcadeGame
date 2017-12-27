@@ -1,4 +1,4 @@
-// 1.)    Enemies our player must avoid
+//>>>>>    ENEMY CLASS    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 var Enemy = function(x,y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -9,9 +9,6 @@ var Enemy = function(x,y, speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    // dbr - movement: var loc = loc++?
-    // dbr - needs a handleinput method
-    // dbr - needs a addEventListener method
 
 };
 
@@ -28,52 +25,49 @@ if(this.x <= 505) {  //canvas.width = 505
 } else {
     this.x = -2;
 }
+
+// Check for Collisions
+ checkCollision(this);
 };
-// 3.)    Draw the enemy on the screen, required method for game
+
+// Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// Player class
+//>>>>>>>    Player class      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // This class requires an update(), render() and
 // a handleInput() method.
 
-var player = function(x,y){
-      this.x = x;
-      this.y = y;
-      this.speed = 40;
+var Player = function(x,y){
+      this.x = 200;
+      this.y = 400;
       this.sprite = 'images/owen.png';
 };
 
-player.prototype.update = function(){
+Player.prototype.update = function(){
   //set x boundaries
   if(this.x <0){
     this.x=0;
-  }
-/*
-  elseif(this.x>400){
-    this.x=400;
-  }
-
-  elseif(this.y>400){
-    this.y=400;
-    //reset if player reaches water
-  } elseif(this.y<0){
-      this.reset();
-  }
-  */
+  };
 };
+  //Reset player to beginning position
+Player.prototype.reset = function() {
+     this.x = 200;
+     this.y = 400;
+};
+
 //reset function sets the player back to the start coordinates
-player.prototype.reset = function(){
+Player.prototype.reset = function(){
       this.x = 30;
       this.y = 50;
 };
 
-player.prototype.render = function() {
+Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-player.prototype.handleInput = function(key) {
+Player.prototype.handleInput = function(key) {
 
         if ( key === 'left' ) {
             if ( this.x > 0 ) {
@@ -95,6 +89,30 @@ player.prototype.handleInput = function(key) {
 };
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// Miscellaneous Functions - Collisions and Winning
+//
+
+    var checkCollision = function(anEnemy) {
+    // check for collision between enemy and player
+    if (
+        player.y + 131 >= anEnemy.y + 90
+        && player.x + 25 <= anEnemy.x + 88
+        && player.y + 73 <= anEnemy.y + 135
+        && player.x + 76 >= anEnemy.x + 11) {
+        console.log('collided');
+        player.x = 202.5;
+        player.y = 383;
+    }
+    /* check for player reaching top of canvas and winning the game
+    if (player.y + 63 <= 0) {
+        player.x = 202.5;
+        player.y = 383;
+        console.log('you made it!');
+    }
+    */
+  };
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // Instantiate your objects
 //      Place all enemy objects in an array called allEnemies
 //      Place the player object in a variable called player
@@ -108,7 +126,7 @@ for (var i=0; i<3; i++){
       allEnemies.push(new Enemy(enemyX, enemyY, enemySpeed))
 };
 
-var player = new player(130,50);
+var player = new Player();
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //  This listens for key presses and sends the keys to your
@@ -121,5 +139,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+    Player.handleInput(allowedKeys[e.keyCode]);
 });
