@@ -18,16 +18,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-//loc = movement that you get from the handler * dt
-
-if(this.x <= 505) {  //canvas.width = 505
+if(this.x <= 505) {  //canvas.width is 505 pixels out
     this.x = this.x + this.speed * dt;
 } else {
     this.x = -2;
 }
-
-// Check for Collisions
- //checkCollision(this);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -42,26 +37,25 @@ Enemy.prototype.render = function() {
 var Player = function(x,y){
       this.x = 200;
       this.y = 400;
-      this.sprite = 'images/owen.png';
+      this.sprite = 'images/char-boy.png';
 };
 
 Player.prototype.update = function(){
   //set x boundaries
   if(this.x <0){
     this.x=0;
-  };
-};
-  //Reset player to beginning position
-Player.prototype.reset = function() {
-     this.x = 200;
-     this.y = 400;
+  }
+/*  allEnemies.foreach(function(enemy) {
+  if(this.x >= enemy.x - 25 && this.x <= enemy.x + 25) {
+      if(this.y >= enemy.y - 25 && this.y <= enemy.y + 25) {
+          this.reset();
+          }
+      }
+  });
+  */
 };
 
-//reset function sets the player back to the start coordinates
-Player.prototype.reset = function(){
-      this.x = 30;
-      this.y = 50;
-};
+
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -72,45 +66,36 @@ Player.prototype.handleInput = function(key) {
         if ( key === 'left' ) {
             if ( this.x > 0 ) {
                 this.x = this.x - 100;
+                console.log(this.x);
             }
         } else if ( key === 'right' ) {
             if ( this.x < 400 ) {
                 this.x = this.x + 100;
+                console.log(this.x);
             }
         } else if ( key === 'up' ) {
             if ( this.y > 0 ) {
                 this.y = this.y - 80;
+                console.log(this.y);
             }
         } else if ( key === 'down') {
             if ( this.y < 380 ) {
                 this.y = this.y + 80;
+                console.log(this.y);
             }
         }
+        //   player wins method
+           if (Player.y <= 0) {
+                this.reset();
+               console.log('you made it!');
+           }
 };
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// Miscellaneous Functions - Collisions and Winning
-//
-
-    var checkCollision = function(anEnemy) {
-    // check for collision between enemy and player
-    if (
-        player.y + 131 >= anEnemy.y + 90
-        && player.x + 25 <= anEnemy.x + 88
-        && player.y + 73 <= anEnemy.y + 135
-        && player.x + 76 >= anEnemy.x + 11) {
-        console.log('collided');
-        player.x = 202.5;
-        player.y = 383;
-    }
-//   check for player reaching top of canvas and winning the game
-    if (player.y + 63 <= 0) {
-        player.x = 202.5;
-        player.y = 383;
-        console.log('you made it!');
-    }
-
-  };
+//Reset player to beginning position
+Player.prototype.reset = function() {
+   this.x = 200;
+   this.y = 400;
+};
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // Instantiate your objects
@@ -132,7 +117,8 @@ var Player = new Player();
 //  This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    var allowedKeys = {//create an object called allowedKeys to hold keystrokes
+      //the document object has a method called addEventlistener
         37: 'left',
         38: 'up',
         39: 'right',
