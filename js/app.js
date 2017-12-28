@@ -45,14 +45,14 @@ Player.prototype.update = function(){
   if(this.x <0){
     this.x=0;
   }
-/*  allEnemies.foreach(function(enemy) {
-  if(this.x >= enemy.x - 25 && this.x <= enemy.x + 25) {
-      if(this.y >= enemy.y - 25 && this.y <= enemy.y + 25) {
-          this.reset();
-          }
-      }
-  });
-  */
+
+// Check for collisions with enemies.
+for (var i = 0; i < 3; i++) {
+console.log("Enemy: " + i + " x: " + allEnemies[i].x + " y: " + allEnemies[i].y);
+if (((this.y < allEnemies[i].y + 72) && (this.y + 72 > allEnemies[i].y) && this.x < allEnemies[i].x + 72) && (this.x + 72 > allEnemies[i].x) ) {
+this.reset();
+}
+}
 };
 
 
