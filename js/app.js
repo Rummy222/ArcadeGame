@@ -46,16 +46,13 @@ Player.prototype.update = function(){
     this.x=0;
   }
 
-// Check for collisions with enemies.
+// Check for collisions with the bugs
 for (var i = 0; i < 3; i++) {
-console.log("Enemy: " + i + " x: " + allEnemies[i].x + " y: " + allEnemies[i].y);
 if (((this.y < allEnemies[i].y + 72) && (this.y + 72 > allEnemies[i].y) && this.x < allEnemies[i].x + 72) && (this.x + 72 > allEnemies[i].x) ) {
 this.reset();
 }
 }
 };
-
-
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -108,8 +105,8 @@ for (var i=0; i<3; i++){
       var enemyY = 65 + 80 * i;
       var enemyX = Math.floor(Math.random() * 30);
       var enemySpeed = 50 + Math.floor(Math.random() * 150);
-      allEnemies.push(new Enemy(enemyX, enemyY, enemySpeed))
-};
+      allEnemies.push(new Enemy(enemyX, enemyY, enemySpeed));
+}
 
 var Player = new Player();
 
