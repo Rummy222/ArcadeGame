@@ -5,28 +5,30 @@ Students should use this [rubric](https://review.udacity.com/#!/projects/2696458
 
 For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
 
-Arcade Game  - Frogger
+#**Arcade Game  - Frogger**#
 
-How to Play this Game!
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+**How to Play this Game!**
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
 To Play the Frogger game
-1.  The player starts at the bottom of the screen
-GOAL OF THE Game
+
+**GOAL OF THE Game**
 ----------------------
 The Goal of the Game is to get to the top of the screen where the blue water is
 without colliding with the bugs
+
+**Installation**
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+load _index.html_ in your favorite browser
+The code is located in my `GitHub` account _Github.com/rummy222_
+
+**How to Run the game**
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The game is composed of several files.  The App.js file is
+the crux of the programming
+
+1.  The player starts at the bottom of the screen
 2.  The player is moved by using the arrow keys at the bottom of the keyboard
 3.  The player cannot move off of the gameboard where the tiles are
 4.  move up the screen with the arrows and avoid the bugs!
 5.  when you reach the top the game will display a message in the console
 6.  if you win the game or if you lose, your player will move back to the starting position
-
-How to Run the game
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-The game is composed of several files.  The App.js file is
-the crux of the programming
-
-There are two main objects Player and enemy
-Player has methods that handle rendering and movement
-Enemy has methods that handle rendering, movement and collision
-Both are instantiated at the bottom of the file
